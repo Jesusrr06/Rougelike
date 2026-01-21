@@ -590,7 +590,7 @@ MonoBehaviour:
   WallTiles:
   - {fileID: 11400000, guid: 598a12ca6b53b4f4f98958a50d8a3d63, type: 2}
   - {fileID: 11400000, guid: fdc7e51a4b960f6408c38ea60e9b3912, type: 2}
-  Player: {fileID: 0}
+  Player: {fileID: 1600135531}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
