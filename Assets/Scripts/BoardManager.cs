@@ -8,12 +8,18 @@ public class BoardManager : MonoBehaviour
     public Tile[] GroundTiles;
 
     public Tile[] WallTiles;
+    private CellData[,] m_BoardData;
+    public class CellData
+    {
+        public bool Passable;
+    }
 
 
 
     void Start()
     {
         m_Tilemap = GetComponentInChildren<Tilemap>();
+        m_BoardData = new CellData[Width, Height];
 
         for (int y = 0; y < Height; ++y)
         {
@@ -24,15 +30,20 @@ public class BoardManager : MonoBehaviour
                 if (x == 0 || y == 0 || x == Width - 1 || y == Height - 1)
                 {
                     tile = WallTiles[Random.Range(0, WallTiles.Length)];
+                    m_BoardData[x, y].Passable = false;
+
                 }
                 else
                 {
                     tile = GroundTiles[Random.Range(0, GroundTiles.Length)];
+                    m_BoardData[x, y].Passable = true;
+
                 }
                 m_Tilemap.SetTile(new Vector3Int(x, y, 0), tile);
             }
         }
     }
+
 
 
 
