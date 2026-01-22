@@ -7,7 +7,7 @@ public class GameManager : MonoBehaviour
     public BoardManager BoardManager;
     public PlayerController PlayerController;
 
-    public TurnManager m_TurnManager { get; private set; }
+    public TurnManager TurnManager { get; private set; }
     private int m_FoodAmount = 100;
 
     private void Awake()
@@ -23,8 +23,9 @@ public class GameManager : MonoBehaviour
 
     void Start()
     {
-        m_TurnManager = new TurnManager();
-        TurnManager.OnTick += OnTurnHappen;
+        TurnManager = new TurnManager();
+   TurnManager.OnTick += OnTurnHappen;
+
         BoardManager.Init();
         PlayerController.Spawn(BoardManager, new Vector2Int(1, 1));
     }
