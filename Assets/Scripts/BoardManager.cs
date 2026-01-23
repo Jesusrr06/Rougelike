@@ -1,12 +1,15 @@
 using UnityEngine;
 using UnityEngine.Tilemaps;
 using System.Collections.Generic ;
+
 public class BoardManager : MonoBehaviour
 {
     public class CellData
-    {   public GameObject ContainedObject;
+    {   
 
         public bool Passable;
+           public CellObject ContainedObject;
+
     }
     private CellData[,] m_BoardData;
     private Grid m_Grid;
@@ -15,36 +18,37 @@ public class BoardManager : MonoBehaviour
     public int Height;
     public Tile[] GroundTiles;
 
-
+    public List<Vector2Int> m_EmptyCellsList;
     public Tile[] WallTiles;
-public GameObject FoodPrefab;
-
+    public FoodObject FoodPrefab;
+ public PlayerController Player;
 void GenerateFood()
 {
    int foodCount = 5;
    for (int i = 0; i < foodCount; ++i)
    {
-       int randomX = Random.Range(1, Width-1);
-       int randomY = Random.Range(1, Height-1);
-       CellData data = m_BoardData[randomX, randomY];
-       if (data.Passable && data.ContainedObject == null)
-       {
-           GameObject newFood = Instantiate(FoodPrefab);
-           newFood.transform.position = CellToWorld(new Vector2Int(randomX, randomY));
-           data.ContainedObject = newFood;
-       }
+       int randomIndex = Random.Range(0, m_EmptyCellsList.Count);
+       Vector2Int coord = m_EmptyCellsList[randomIndex];
+      
+       m_EmptyCellsList.RemoveAt(randomIndex);
+       CellData data = m_BoardData[coord.x, coord.y];
+       FoodObject newFood = Instantiate(FoodPrefab);
+       newFood.transform.position = CellToWorld(coord);
+       data.ContainedObject = newFood;
    }
 }
+
     public Vector3 CellToWorld(Vector2Int cellIndex)
     {
         return m_Grid.GetCellCenterWorld((Vector3Int)cellIndex);
     }
 
-    public PlayerController Player;
 public void Init()
     {
         m_Tilemap = GetComponentInChildren<Tilemap>();
         m_Grid = GetComponentInChildren<Grid>();
+
+       m_EmptyCellsList = new List<Vector2Int>();
 
         m_BoardData = new CellData[Width, Height];
 
@@ -64,13 +68,16 @@ public void Init()
                 {
                     tile = GroundTiles[Random.Range(0, GroundTiles.Length)];
                     m_BoardData[x, y].Passable = true;
-                }
-
-                m_Tilemap.SetTile(new Vector3Int(x, y, 0), tile);
-            }
-        }
-
-        GenerateFood();
+                   m_EmptyCellsList.Add(new Vector2Int(x, y));
+           }
+          
+           m_Tilemap.SetTile(new Vector3Int(x, y, 0), tile);
+       }
+   }
+  
+   //remove the starting point of the player! It's not empty, the player is there
+   m_EmptyCellsList.Remove(new Vector2Int(1, 1));
+   GenerateFood();
     }
 
     public CellData GetCellData(Vector2Int cellIndex)
@@ -89,5 +96,6 @@ public void Init()
     {
 
     }
+
 
 }

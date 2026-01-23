@@ -33,9 +33,16 @@ public class GameManager : MonoBehaviour
         BoardManager.Init();
         PlayerController.Spawn(BoardManager, new Vector2Int(1, 1));
     }
-    void OnTurnHappen()
-    {
-        m_FoodAmount -= 1;
-        m_FoodLabel.text = "Food : " + m_FoodAmount;
-    }
+ 
+  void OnTurnHappen()
+{
+   ChangeFood(-1);
+}
+
+public void ChangeFood(int amount)
+{
+   m_FoodAmount += amount;
+   m_FoodLabel.text = "Food : " + m_FoodAmount;
+}
+
 }

@@ -10,6 +10,7 @@ GameObject:
   m_Component:
   - component: {fileID: 1144607786843060194}
   - component: {fileID: 3895812241975640607}
+  - component: {fileID: 1178548908266950899}
   m_Layer: 0
   m_Name: SmallFood
   m_TagString: Untagged
@@ -91,3 +92,16 @@ SpriteRenderer:
   m_SpriteTileMode: 0
   m_WasSpriteAssigned: 1
   m_SpriteSortPoint: 0
+--- !u!114 &1178548908266950899
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 3956326692533303061}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 6ea0b17d67de27e48842a0753bf141a0, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: Assembly-CSharp::FoodObject
+  AmountGranted: 10
