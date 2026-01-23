@@ -4,7 +4,6 @@ public class PlayerController : MonoBehaviour
 {
     private BoardManager m_Board;
     private Vector2Int m_CellPosition;
-    public Vector2Int CellPosition => m_CellPosition;
     
     public void Spawn(BoardManager boardManager, Vector2Int cell)
     {
@@ -45,22 +44,26 @@ public class PlayerController : MonoBehaviour
         }
 
        if(hasMoved)
-{
+        {
    //check if the new position is passable, then move there if it is.
-   BoardManager.CellData cellData = m_Board.GetCellData(newCellTarget);
+        BoardManager.CellData cellData = m_Board.GetCellData(newCellTarget);
+            
+       if(cellData != null && cellData.Passable)
+        {
+            GameManager.Instance.TurnManager.Tick();
 
-   if(cellData != null && cellData.Passable)
-   {
-       GameManager.Instance.TurnManager.Tick();
-       MoveTo(newCellTarget);
+            if (cellData.ContainedObject == null)
+                {
+                     MoveTo(newCellTarget);
+                }
+                else if(cellData.ContainedObject.PlayerWantsToEnter())
+                {
+                MoveTo(newCellTarget);
+                cellData.ContainedObject.PlayerEntered();
+                }
+            }
 
-       if (cellData.ContainedObject != null)
-       {
-           cellData.ContainedObject.PlayerEntered();
-       }
-   }
-}
+        }
 
-}
-
+    }
 }

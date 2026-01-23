@@ -689,11 +689,15 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 8b27506fa3b14b34f9ccbf87b5c7cf13, type: 2}
   - {fileID: 11400000, guid: 8f29e65e84c491641adf56c6a86c1805, type: 2}
   - {fileID: 11400000, guid: 4b6887b029cf4134d8d2e5889efebca0, type: 2}
+  m_EmptyCellsList: []
   WallTiles:
   - {fileID: 11400000, guid: 598a12ca6b53b4f4f98958a50d8a3d63, type: 2}
   - {fileID: 11400000, guid: fdc7e51a4b960f6408c38ea60e9b3912, type: 2}
-  FoodPrefab: {fileID: 3956326692533303061, guid: c46c1db446e0d544b8b304a4ac37cce6, type: 3}
   Player: {fileID: 1600135531}
+  FoodPrefab:
+  - {fileID: 1178548908266950899, guid: c46c1db446e0d544b8b304a4ac37cce6, type: 3}
+  - {fileID: 8428581255121788986, guid: c6fba39a8519c1244957d7362c84f4b5, type: 3}
+  WallPrefab: {fileID: 227888744579136176, guid: 04179de462d66d949a729ca836c3f277, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
