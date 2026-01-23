@@ -22,8 +22,8 @@ public class BoardManager : MonoBehaviour
    
     public PlayerController Player;
     public FoodObject[] FoodPrefab= new FoodObject[2]; 
-    public WallObject WallPrefab;
-
+    public WallObject[] WallPrefab = new WallObject[3];
+    public WallObject[] WallPrefabdamaged= new WallObject[3];
     public Vector3 CellToWorld(Vector2Int cellIndex)
     {
         return m_Grid.GetCellCenterWorld((Vector3Int)cellIndex);
@@ -93,7 +93,7 @@ public class BoardManager : MonoBehaviour
             Vector2Int coord = m_EmptyCellsList[randomIndex];
 
             m_EmptyCellsList.RemoveAt(randomIndex);
-            WallObject newWall = Instantiate(WallPrefab);
+            WallObject newWall = Instantiate(WallPrefab[Random.Range(0, WallPrefab.Length)]);   
             AddObject(newWall, coord);
         }
     }
