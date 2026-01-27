@@ -697,7 +697,14 @@ MonoBehaviour:
   FoodPrefab:
   - {fileID: 1178548908266950899, guid: c46c1db446e0d544b8b304a4ac37cce6, type: 3}
   - {fileID: 8428581255121788986, guid: c6fba39a8519c1244957d7362c84f4b5, type: 3}
-  WallPrefab: {fileID: 227888744579136176, guid: 04179de462d66d949a729ca836c3f277, type: 3}
+  WallPrefab:
+  - {fileID: -6324913611139847905, guid: 280b4971d2449ff429c07ecab407d2a7, type: 3}
+  - {fileID: 2854670030427044043, guid: 4116220fc8e70964e9c7c4a730de292e, type: 3}
+  - {fileID: 2129773670950614651, guid: eb42b5d6ef5fa314eb2dc77af01d8538, type: 3}
+  WallPrefabdamaged:
+  - {fileID: 2854670030427044043, guid: 4116220fc8e70964e9c7c4a730de292e, type: 3}
+  - {fileID: -6324913611139847905, guid: 280b4971d2449ff429c07ecab407d2a7, type: 3}
+  - {fileID: 2129773670950614651, guid: eb42b5d6ef5fa314eb2dc77af01d8538, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0
