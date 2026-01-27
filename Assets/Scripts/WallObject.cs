@@ -4,6 +4,7 @@ public class WallObject : CellObject
 {
   
     public Tile ObstacleTile;
+    public Tile DamagedTile;
     public int MaxHealth = 3;
     
     private Tile m_OriginalTile;
