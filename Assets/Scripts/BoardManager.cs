@@ -23,7 +23,6 @@ public class BoardManager : MonoBehaviour
     public PlayerController Player;
     public FoodObject[] FoodPrefab= new FoodObject[2]; 
     public WallObject[] WallPrefab = new WallObject[3];
-    public WallObject[] WallPrefabdamaged= new WallObject[3];
     public Vector3 CellToWorld(Vector2Int cellIndex)
     {
         return m_Grid.GetCellCenterWorld((Vector3Int)cellIndex);
