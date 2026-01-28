@@ -694,7 +694,6 @@ MonoBehaviour:
   - {fileID: 11400000, guid: 598a12ca6b53b4f4f98958a50d8a3d63, type: 2}
   - {fileID: 11400000, guid: fdc7e51a4b960f6408c38ea60e9b3912, type: 2}
   Player: {fileID: 1600135531}
-  ExitCellPrefab: {fileID: 1252874070846945498, guid: a8170de4a37960c46b1ecac425973c2d, type: 3}
   FoodPrefab:
   - {fileID: 1178548908266950899, guid: c46c1db446e0d544b8b304a4ac37cce6, type: 3}
   - {fileID: 8428581255121788986, guid: c6fba39a8519c1244957d7362c84f4b5, type: 3}
