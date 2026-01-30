@@ -81,7 +81,7 @@ public class PlayerController : MonoBehaviour
 
 
                     cellData.ContainedObject.PlayerEntered();
-                    
+
             }
 
             return;
