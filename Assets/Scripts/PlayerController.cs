@@ -72,16 +72,13 @@ public class PlayerController : MonoBehaviour
             {
                 m_IsMoving = false;
                 m_Animator.SetBool("Moving", false);
-
-                m_Animator.SetTrigger("Attacking");
                 var cellData = m_Board.GetCellData(m_CellPosition);
 
-
                 if (cellData.ContainedObject != null)
-
-
+                {
+                    m_Animator.SetTrigger("Attacking");
                     cellData.ContainedObject.PlayerEntered();
-
+                }
             }
 
             return;
