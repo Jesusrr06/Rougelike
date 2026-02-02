@@ -7,7 +7,8 @@ public class PlayerController : MonoBehaviour
     private bool m_IsGameOver;
     private Vector3 m_MoveTarget;
     private bool m_IsMoving;
-    public float MoveSpeed = 5f;
+      private Animator m_Animator;
+  public float MoveSpeed = 5f;
 
     public void Spawn(BoardManager boardManager, Vector2Int cell)
     {
@@ -27,7 +28,6 @@ public class PlayerController : MonoBehaviour
     {
         m_IsGameOver = false;
     }
-    private Animator m_Animator;
 
     private void Awake()
     {
@@ -76,7 +76,7 @@ public class PlayerController : MonoBehaviour
 
                 if (cellData.ContainedObject != null)
                 {
-                    m_Animator.SetTrigger("Attacking");
+
                     cellData.ContainedObject.PlayerEntered();
                 }
             }
@@ -110,7 +110,7 @@ public class PlayerController : MonoBehaviour
 
         if (hasMoved)
         {
-            //check if the new position is passable, then move there if it is.
+            // check if the new position is passable, then move there if it is.
             BoardManager.CellData cellData = m_Board.GetCellData(newCellTarget);
 
             if (cellData != null && cellData.Passable)
@@ -121,13 +121,22 @@ public class PlayerController : MonoBehaviour
                 {
                     MoveTo(newCellTarget);
                 }
-                else if (cellData.ContainedObject.PlayerWantsToEnter())
+                else
                 {
-                    MoveTo(newCellTarget);
-                    cellData.ContainedObject.PlayerEntered();
+                    bool canEnter = cellData.ContainedObject.PlayerWantsToEnter();
+
+                    if (canEnter)
+                    {
+                        MoveTo(newCellTarget);
+                        cellData.ContainedObject.PlayerEntered();
+                    }
+                    else
+                    {
+                        m_Animator.SetTrigger("Attack");
+
+                    }
                 }
             }
-
         }
 
     }
