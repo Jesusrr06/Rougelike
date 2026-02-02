@@ -517,6 +517,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: 2b740770c02992648ae9dbfc515d8e19, type: 3}
   m_Name: 
   m_EditorClassIdentifier: Assembly-CSharp::PlayerController
+  MoveSpeed: 5
 --- !u!212 &1600135532
 SpriteRenderer:
   serializedVersion: 2
@@ -725,6 +726,8 @@ MonoBehaviour:
   - {fileID: -6324913611139847905, guid: 280b4971d2449ff429c07ecab407d2a7, type: 3}
   - {fileID: 2854670030427044043, guid: 4116220fc8e70964e9c7c4a730de292e, type: 3}
   - {fileID: 2129773670950614651, guid: eb42b5d6ef5fa314eb2dc77af01d8538, type: 3}
+  EnemyPrefab:
+  - {fileID: 5628821643088806901, guid: 6cdee8dca85f6fa45afe935d20b8bec6, type: 3}
 --- !u!1660057539 &9223372036854775807
 SceneRoots:
   m_ObjectHideFlags: 0

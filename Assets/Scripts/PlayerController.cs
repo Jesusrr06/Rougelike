@@ -10,6 +10,8 @@ public class PlayerController : MonoBehaviour
       private Animator m_Animator;
   public float MoveSpeed = 5f;
 
+    public Vector2Int CellPosition => m_CellPosition;
+
     public void Spawn(BoardManager boardManager, Vector2Int cell)
     {
         m_Board = boardManager;
