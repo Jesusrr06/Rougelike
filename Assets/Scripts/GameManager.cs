@@ -14,6 +14,7 @@ public class GameManager : MonoBehaviour
     private int m_CurrentLevel = 1;
     private VisualElement m_GameOverPanel;
     private Label m_GameOverMessage;
+    private bool m_IsGameOver = false;
 
     private void Awake()
     {
@@ -27,7 +28,7 @@ public class GameManager : MonoBehaviour
     }
 
   void Start()
-{
+{ 
    TurnManager = new TurnManager();
    TurnManager.OnTick += OnTurnHappen;
   
@@ -38,9 +39,18 @@ public class GameManager : MonoBehaviour
 
    StartNewGame();
 }
+
+void Update()
+{
+   if (m_IsGameOver && Input.anyKeyDown)
+   {
+      StartNewGame();
+   }
+}
  public void StartNewGame()
 {
    m_GameOverPanel.style.visibility = Visibility.Hidden;
+   m_IsGameOver = false;
   
    m_CurrentLevel = 1;
    m_FoodAmount = 20;
@@ -69,15 +79,23 @@ public class GameManager : MonoBehaviour
 
     public void ChangeFood(int amount)
     {
+        if (m_IsGameOver==false  ) {
+            m_GameOverPanel.style.visibility = Visibility.Hidden;
+         }
+            ;
         m_FoodAmount += amount;
         m_FoodLabel.text = "Food : " + m_FoodAmount;
-         if (m_FoodAmount <= 0)
-   { 
-    PlayerController.GameOver();
-       m_GameOverPanel.style.visibility = Visibility.Visible;
-         m_GameOverMessage.text = "Game Over!\n\nSurvived " + m_CurrentLevel + " days";
+        if (m_FoodAmount <= 0)
+        {
+            m_IsGameOver = true;
+            PlayerController.GameOver();
+            m_GameOverPanel.style.visibility = Visibility.Visible;
+            m_GameOverMessage.style.fontSize= 24;   
+            m_GameOverMessage.text = "Game Over!\n\nSurvived " + m_CurrentLevel + " days";
 
-   }
+        }
     }
+    
+
 
 }

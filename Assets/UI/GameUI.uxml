@@ -1,6 +1,6 @@
 <ui:UXML xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xmlns:ui="UnityEngine.UIElements" xmlns:uie="UnityEditor.UIElements" noNamespaceSchemaLocation="../../UIElementsSchema/UIElements.xsd" editor-extension-mode="False">
     <ui:Label text="Label" name="FoodLabel" style="-unity-font-definition: url(&quot;project://database/Assets/Roguelike2D/TutorialAssets/Fonts/PressStart2P-Regular.ttf?fileID=12800000&amp;guid=b284a6525342f44599e9ce79e37c2d61&amp;type=3#PressStart2P-Regular&quot;); color: rgb(255, 255, 255); font-size: 35px; -unity-text-align: upper-center; position: absolute; bottom: 0; left: 0; right: 0; max-width: 100%; min-height: auto; max-height: 50%; width: auto; height: auto;"/>
     <ui:VisualElement name="GameOverPanel" style="flex-grow: 1; top: 0; left: 0; bottom: 0; right: 0; background-color: rgba(0, 0, 0, 0.78);">
-        <ui:Label text="Game Over " name="GameOverMessage" style="align-items: center; justify-content: space-around;"/>
+        <ui:Label text="Game Over " name="GameOverMessage" data-source="project://database/Assets/UI%20Toolkit/UnityThemes/UnityDefaultRuntimeTheme.tss?fileID=4413694071827464959&amp;guid=7d8297cfed2c28749aaacb1cf558b672&amp;type=3#default" style="align-items: center; justify-content: space-around; color: rgb(236, 3, 3); height: 448px; width: 346px; -unity-text-align: upper-center; font-size: 27px; top: auto; align-self: center;"/>
     </ui:VisualElement>
 </ui:UXML>
