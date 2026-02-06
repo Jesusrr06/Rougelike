@@ -1,10 +1,11 @@
+using System;
 using UnityEngine;
 
 public class Enemy : CellObject
 {
     public int Health = 3;
     public float DeathAnimationDelay = 1f;
-
+    private Boolean m_IsDying = false;
     private int m_CurrentHealth;
     private Animator m_Animator;
 
@@ -31,8 +32,10 @@ public class Enemy : CellObject
 
         if (m_CurrentHealth <= 0)
         {
+            m_IsDying = true; 
             m_Animator.SetTrigger("Enemydie");
             Invoke("DestroySelf", DeathAnimationDelay);
+            return true;
         }
 
         return false;
@@ -64,37 +67,42 @@ public class Enemy : CellObject
 
     void TurnHappened()
     {
-        //We added a public property that return the player current cell!
-        var playerCell = GameManager.Instance.PlayerController.CellPosition;
-
-        int xDist = playerCell.x - m_Cell.x;
-        int yDist = playerCell.y - m_Cell.y;
-
-        int absXDist = Mathf.Abs(xDist);
-        int absYDist = Mathf.Abs(yDist);
-
-        if ((xDist == 0 && absYDist == 1)
-            || (yDist == 0 && absXDist == 1))
+        if (this.m_IsDying == false)
         {
-            //we are adjacent to the player, attack!
-            AttackPlayer();
-        }
-        else
-        {
-            if (absXDist > absYDist)
+
+
+            //We added a public property that return the player current cell!
+            var playerCell = GameManager.Instance.PlayerController.CellPosition;
+
+            int xDist = playerCell.x - m_Cell.x;
+            int yDist = playerCell.y - m_Cell.y;
+
+            int absXDist = Mathf.Abs(xDist);
+            int absYDist = Mathf.Abs(yDist);
+
+            if ((xDist == 0 && absYDist == 1)
+                || (yDist == 0 && absXDist == 1))
             {
-                if (!TryMoveInX(xDist))
-                {
-                    //if our move was not successful (so no move and not attack)
-                    //we try to move along Y
-                    TryMoveInY(yDist);
-                }
+                //we are adjacent to the player, attack!
+                AttackPlayer();
             }
             else
             {
-                if (!TryMoveInY(yDist))
+                if (absXDist > absYDist)
                 {
-                    TryMoveInX(xDist);
+                    if (!TryMoveInX(xDist))
+                    {
+                        //if our move was not successful (so no move and not attack)
+                        //we try to move along Y
+                        this.TryMoveInY(yDist);
+                    }
+                }
+                else
+                {
+                    if (!TryMoveInY(yDist))
+                    {
+                        this.TryMoveInX(xDist);
+                    }
                 }
             }
         }
@@ -108,7 +116,7 @@ public class Enemy : CellObject
     void AttackPlayer()
     {
         GameManager.Instance.ChangeFood(-3);
-        m_Animator.SetTrigger("Enemyattack");
+        m_Animator.SetTrigger("EnemyAttack");
     }
 
     bool TryMoveInX(int xDist)
